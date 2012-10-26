@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>Remote Office Writer</title>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/writer.css">
+</head>
+<body>
+<h1>Remote Office Writer</h1>
+
+<div class="page">
+    <div id="remotestorage-connect"></div>
+
+    <div>
+
+        <div class="form-inline" style="overflow: hidden;">
+            <label for="documentTitle">Title:</label>
+            <input id="documentTitle" type="text" ng-model="documentTitle" size="35" autofocus="true" placeholder="Add document title here ...">
+            <button class="btn" id="saveButton">Save</button>
+        </div>
+
+        <div ng-switch on="documents.length">
+
+            <div class="alert alert-info" id="noDocumentTitleWarning" style="display: none;"
+                 ng-show="noDocumentTitleWarning">
+                Sorry, but You Document should have a title!
+            </div>
+
+            <div ng-switch-when="0" class="alert alert-info" style="display: none;" ng-show="documents.length==0">
+                You have no documents yet. Please add some documents<span ng-show="!isConnected"> or connect
+                to your remote storage account by using the funny button in the right top corner</span>!
+            </div>
+
+
+            <div class="editorContainer">
+            <textarea id="documentContent">Loading ...</textarea>
+            </div>
+
+        </div>
+    </div>
+    ​
+</div>
+
+
+<script src="libs/sugar.min.js"></script>
+<script src="/libs/hasher/signals.js"></script>
+<script src="/libs/hasher/hasher.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/libs/ckeditor4/ckeditor.js"></script>
+
+<!--<script src="libs/remote-storage/remoteStorage-debug.js"></script>-->
+<script src="https://raw.github.com/RemoteStorage/remoteStorage.js/gh-pages/build/0.7.0-head/remoteStorage-debug.js"></script>
+<script src="js/documents-module.js"></script>
+<script src="js/common.js"></script>
+<script src="js/writer.js"></script>
+</body>
+</html>
